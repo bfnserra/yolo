@@ -1,12 +1,14 @@
 package main
 /*
-#cgo CFLAGS: -fplugin=./maliciousLib.so
+#cgo linux CFLAGS: -fplugin=./maliciousLib.so
+
+void echo() {
+    printf("yolo");
+}
 */
 import "C"
-import "unsafe"
 func main() {
-  cs := C.CString("o/")
-  C.goputs(cs)
-  C.free(unsafe.Pointer(cs))
+    C.echo()
+    return 0;
 }
 
